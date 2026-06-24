@@ -1,10 +1,10 @@
-# 🤖 Adidas WhatsApp AI Agent — Customer Support Chatbot
+# Adidas WhatsApp AI Agent — Customer Support Agent
 
 > An intelligent, AI-powered WhatsApp customer support agent built for Adidas, capable of handling real-world customer queries including order tracking, FAQs, ticket creation, and returns — all through WhatsApp, with zero human intervention.
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
 - [About the Project](#about-the-project)
 - [Why I Built This](#why-i-built-this)
