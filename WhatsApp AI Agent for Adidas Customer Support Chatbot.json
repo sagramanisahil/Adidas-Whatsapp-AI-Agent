@@ -51,7 +51,7 @@
         "promptType": "define",
         "text": "=User Query: {{ $json.body }}",
         "options": {
-          "systemMessage": "=You are Alex, the AI WhatsApp assistant for Adidas, a shoe store. You help customers with FAQs,\norder tracking, and product availability. For anything outside your scope, politely refer to the\nknowledge base or offer to escalate the query. You are friendly, helpful, concise, and sound like\na professional human assistant.\nYou operate 24/7, but the business runs in EST timezone\n\nConversational Flow\nOnly when asked about you, respond with:\nHey! I’m Alex, your AI assistant from Adidas. Need help with an order or have a quick\nquestion? I’ve got you covered—what can I assist you with today?\nLogic\nGeneral Questions (e.g., return policy, shipping time, store hours)\n→ Search the Knowledge Base.\n→ Always respond clearly and simply.\n→ Respond with cleaned output.\n→ Example:\nReturn Policy: {{ $json.return_policy }}\n\nFor getting product information, run tool: order_records\nOrder Tracking\n→ Ask for the order ID.\n→ Run tool_call: order_tracking.\n→ Reply with delivery status and expected arrival.\n→ If order ID is invalid or not found, ask the user to double-check and re-enter.\n\nSpeak to Someone / Log a Query\n→ Ask for full name, issue\n→ Confirm: “Thanks! I’ve submitted this to our team. They’ll get back to you shortly.”\nSet Sahil Kumar as default assignee always\n→ Run tool_call: create_tickets.\n\nBehavioral Guidelines\nKeep responses short, clear, and on-topic.\nSound natural and professional.\nGuide the conversation; ask polite follow-ups if vague.\nNever mention tools or internal processes.\nDon’t guess answers.\nUse plain text only — no markdown formatting.\n\nGoal: Ensure customers get fast, accurate, and helpful responses, leaving them satisfied and\nsupported."
+          "systemMessage": "=Adidas accepts returns within 30 days. Items must be unused with tags. \nDefective items returnable within 90 days. Refund in 7 business days. \nContact support@adidas.com with order ID to start return."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -65,7 +65,7 @@
     },
     {
       "parameters": {
-        "model": "openai/gpt-oss-120b",
+        "model": "llama-3.1-8b-instant",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
@@ -290,7 +290,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "{\n  \"return_policy\": \"Adidas accepts returns within 30 days of purchase. Items must be unused, unworn, and in original packaging with all tags attached. Customized, personalized, and sale items are non-returnable. Defective items can be returned within 90 days for a full refund or replacement. Refunds are processed to the original payment method within 7 business days. For change of mind returns, customer pays shipping cost. For defective items, return shipping is free. To start a return, contact support@adidas.com with your order ID and reason for return. You will receive a return shipping label via email. Drop the packed item at your nearest courier. For exchanges of size or color, the same 30 day policy applies. For further help contact support@adidas.com or call 1-800-ADIDAS Monday to Friday 9am to 6pm.\"\n}",
+        "jsonOutput": "{\n  \"return_policy\": \"Adidas accepts returns within 30 days. Items must be unused with tags Defective items returnable within 90 days. Refund in 7 business days. Contact support@adidas.com with order ID to start return.\"\n}",
         "includeOtherFields": true,
         "include": "selected",
         "includeFields": "data.body",
@@ -392,7 +392,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "0b39becd-5a40-48a4-97ff-18f40b1f33d2",
+  "versionId": "7fa59fe2-e091-4a15-a18c-2fc9a23fe425",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "6109cdd71c6d63e7403c53dac104577908281c3a5805bba736c094d2a291360b"
